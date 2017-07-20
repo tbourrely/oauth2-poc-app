@@ -1,0 +1,16 @@
+{%  extends "base.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Votre application a été créé, afin de pouvoir utiliser l'API gardez précieusement (et ne partagez pas) ces informations : </h1>
+                <ul class="list-group">
+                    <li class="list-group-item">client_id : {{ client.client_id }}</li>
+                    <li class="list-group-item">client_secret : {{ client.client_secret }}</li>
+                </ul>
+                <a href="{{ path_for('home') }}" class="btn btn-info">Accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

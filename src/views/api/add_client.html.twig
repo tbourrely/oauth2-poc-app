@@ -1,0 +1,33 @@
+{%  extends "base.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{{ path_for('API_addClient.post') }}" method="post" class="form">
+                    <div class="form-group"><h2>Créer une application</h2></div>
+                    <div class="form-group">
+                        <label for="app_name">Nom de l'application : </label>
+                        <input class="form-control" type="text" name="app_name" required>
+
+                        {% if errors.app_name %}
+                            <div class="col-md-12" style="color: red">{{ errors.app_name }}</div>
+                        {% endif %}
+
+                        <label for="redirect_uri">URI de redirection : </label>
+                        <input class="form-control" type="url" name="redirect_uri" required>
+
+                        {% if errors.redirect_uri %}
+                            <div class="col-md-12" style="color: red">{{ errors.redirect_uri }}</div>
+                        {% endif %}
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Créer">
+                        <a href="{{ path_for('home') }}" class="btn btn-danger">retour</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

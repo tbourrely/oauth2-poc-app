@@ -1,0 +1,55 @@
+{%  extends "base.html.twig" %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="h1">Oauth2 POC - MyFacebook</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="padding: 20px 0"><h3>Ce site représente l'application dans laquelle l'utilisateur à initialement créé son compte. Les données entrées lors de la création d'un compte seront disponibles dans l'api.</h3></div>
+            <div class="col-md-6">
+
+                {% if not connected_user.id %}
+
+                    <a href="{{ path_for('login.form') }}" class="btn btn-primary">Se connecter</a>
+                    <a href="{{ path_for('createUser.form') }}" class="btn btn-warning">Créer un compte</a>
+
+                {% else %}
+
+                    <a href="{{ path_for('logout') }}" class="btn btn-danger">Se déconnecter</a>
+                    <br><br>
+                    <h3>Bonjour {{ connected_user.firstname }} !</h3>
+                    <br><br>
+                    <h6>Informations sur le compte : </h6>
+                    <br>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Nom : {{ connected_user.lastname }}</li>
+                        <li class="list-group-item">Username : {{ connected_user.username }}</li>
+                    </ul>
+
+                {% endif %}
+
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group">
+
+                    {% for user in users %}
+                        <li class="list-group-item">{{ user.firstname }}  {{ user.lastname }}</li>
+                    {% endfor %}
+
+                </ul>
+
+                <h4 style="margin: 20px 0;">Création d'une application pour l'API</h4>
+                <a href="{{ path_for('API_addClient.form') }}" class="btn btn-success">Créé une application</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{%  extends "base.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{% if uri %} {{ uri }} {% endif %}" method="post" class="form">
+                    <div class="form-group"><h2>Connexion</h2></div>
+
+                    {% if status %}
+                        <div class="col-md-12"><h3 style="color: red">Impossible de se connecter avec ces identifiants</h3></div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        <label for="username">Login : </label>
+                        <input class="form-control" type="text" name="username" required>
+                        <label for="password">Mot de passe : </label>
+                        <input class="form-control" type="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Connexion">
+                        <a href="{{ path_for('home') }}" class="btn btn-danger">retour</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
